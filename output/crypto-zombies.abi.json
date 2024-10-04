@@ -1,0 +1,239 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.79.0",
+            "commitHash": "129f3b9964af4d4a709d1383930ade12dfe7c081",
+            "commitDate": "2024-06-10",
+            "channel": "Stable",
+            "short": "rustc 1.79.0 (129f3b996 2024-06-10)"
+        },
+        "contractCrate": {
+            "name": "crypto-zombies",
+            "version": "0.0.0"
+        },
+        "framework": {
+            "name": "multiversx-sc",
+            "version": "0.53.0"
+        }
+    },
+    "name": "ZombiesContract",
+    "constructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "upgradeConstructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "set_crypto_kitties_sc_address",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "generate_random_dna",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "create_random_zombie",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "name",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "feed_on_kitty",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "zombie_id",
+                    "type": "u32"
+                },
+                {
+                    "name": "kitty_id",
+                    "type": "u32"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "zombies",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "id",
+                    "type": "u32"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "Zombie"
+                }
+            ]
+        },
+        {
+            "name": "owned_zombies",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "owner",
+                    "type": "Address"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "variadic<u32>",
+                    "multi_result": true
+                }
+            ]
+        },
+        {
+            "name": "cooldown_time",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "change_name",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "zombie_id",
+                    "type": "u32"
+                },
+                {
+                    "name": "name",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "change_dna",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "zombie_id",
+                    "type": "u32"
+                },
+                {
+                    "name": "dna",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "level_up",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "EGLD"
+            ],
+            "inputs": [
+                {
+                    "name": "zombie_id",
+                    "type": "u32"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "withdraw",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "attack",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "zombie_id",
+                    "type": "u32"
+                },
+                {
+                    "name": "target_id",
+                    "type": "u32"
+                }
+            ],
+            "outputs": []
+        }
+    ],
+    "events": [
+        {
+            "identifier": "newZombieEvent",
+            "inputs": [
+                {
+                    "name": "zombie_id",
+                    "type": "u32",
+                    "indexed": true
+                },
+                {
+                    "name": "name",
+                    "type": "bytes"
+                },
+                {
+                    "name": "dna",
+                    "type": "u64",
+                    "indexed": true
+                }
+            ]
+        }
+    ],
+    "esdtAttributes": [],
+    "hasCallback": true,
+    "types": {
+        "Zombie": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "name",
+                    "type": "bytes"
+                },
+                {
+                    "name": "dna",
+                    "type": "u64"
+                },
+                {
+                    "name": "level",
+                    "type": "u16"
+                },
+                {
+                    "name": "ready_time",
+                    "type": "u64"
+                },
+                {
+                    "name": "win_count",
+                    "type": "u32"
+                },
+                {
+                    "name": "loss_count",
+                    "type": "u32"
+                }
+            ]
+        }
+    }
+}

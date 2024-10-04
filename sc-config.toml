@@ -1,0 +1,4 @@
+[settings]
+
+[[proxy]]
+path = "crypto-zombies/src/kitty_ownership_proxy.rs"
